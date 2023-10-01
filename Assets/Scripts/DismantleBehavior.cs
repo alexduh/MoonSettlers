@@ -6,11 +6,20 @@ public class DismantleBehavior : MonoBehaviour
 {
     [SerializeField] Texture2D cursorHammer;
 
-    public void OnClick()
-    {
-        // TODO: toggle Dismantle mode, change cursor back to normal if turning off Dismantle
+    public static bool dismantleMode = false;
 
-        Cursor.SetCursor(cursorHammer, Vector2.zero, CursorMode.ForceSoftware);
+    public void ToggleMode()
+    {
+        if (!dismantleMode)
+        {
+            Cursor.SetCursor(cursorHammer, new Vector2(10, 10), CursorMode.ForceSoftware);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+        }
+
+        dismantleMode = !dismantleMode;
     }
 
     // Start is called before the first frame update

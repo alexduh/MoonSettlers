@@ -15,13 +15,24 @@ public abstract class Structure : MonoBehaviour
         
     }
 
+    public void Highlight()
+    {
+        if (!DismantleBehavior.dismantleMode)
+            return;
+
+        // TODO: highlight building to indicate dismantling is possible
+    }
+
     protected void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Structure>())
             overlappingOther = true;
-        else
-            overlappingOther = false;
+    }
 
+    protected void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<Structure>())
+            overlappingOther = false;
     }
 
     // Update is called once per frame

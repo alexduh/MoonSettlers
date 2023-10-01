@@ -10,6 +10,8 @@ public class BuildBehavior : MonoBehaviour
     GameObject structure;
     [SerializeField] Material wireframe;
     [SerializeField] Material solid;
+    [SerializeField] Sprite constructionSprite;
+    Sprite origSprite;
 
     [SerializeField] float buildTimer = -1;
     Dictionary<string, float> buildTime;
@@ -31,6 +33,10 @@ public class BuildBehavior : MonoBehaviour
 
     void StartBuilding()
     {
+        SpriteRenderer sr = structure.GetComponent<SpriteRenderer>();
+        origSprite = sr.sprite;
+        sr.sprite = constructionSprite;
+        sr.material = solid;
         structure.transform.parent = GameObject.FindWithTag("Moon").transform;
         structure.GetComponent<Structure>().placed = true;
         Structure.currentlyBuilding = true;
@@ -39,6 +45,15 @@ public class BuildBehavior : MonoBehaviour
         DisableBuilding();
 
         // TODO: play startBuild sound effect
+    }
+
+    void BuildFinished()
+    {
+        structure.GetComponent<SpriteRenderer>().sprite = origSprite;
+        GameManager.buildingDict[structure.tag]++;
+        Structure.currentlyBuilding = false;
+        structure = null;
+        EnableBuilding();
     }
 
     void DisableBuilding()
@@ -83,13 +98,13 @@ public class BuildBehavior : MonoBehaviour
     {
         buildTime = new Dictionary<string, float>()
         {
-            { "Headquarters", 60 },
-            { "Greenhouse", 60 },
-            { "Beacon", 60 },
-            { "ResearchLab", 60 },
-            { "SynthesisReactor", 60 },
-            { "Hospital", 60 },
-            { "DefenseTurret", 60 },
+            { "Headquarters", 10 },
+            { "Greenhouse", 10 },
+            { "Beacon", 10 },
+            { "ResearchLab", 10 },
+            { "SynthesisReactor", 10 },
+            { "Hospital", 10 },
+            { "DefenseTurret", 10 },
         };
     }
 
@@ -107,12 +122,7 @@ public class BuildBehavior : MonoBehaviour
         if (Structure.currentlyBuilding) {
             buildTimer -= Time.deltaTime * GameManager.population;
             if (buildTimer <= 0)
-            {
-                GameManager.buildingDict[structure.tag]++;
-                Structure.currentlyBuilding = false;
-                structure = null;
-                EnableBuilding();
-            }
+                BuildFinished();
 
             return;
         }

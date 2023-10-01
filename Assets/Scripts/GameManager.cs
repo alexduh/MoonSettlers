@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
             if (!spawnedFood)
             {
                 foodWarning = Instantiate(emergencyTextPrefab, canvasTransform);
-                foodWarning.GetComponent<TMP_Text>().text = "the settlers are getting hungry...";
+                foodWarning.GetComponent<TMP_Text>().text = "the settlers are gnawing on their fingers...";
                 foodDeathTimer = foodTimeLimit;
                 spawnedFood = true;
             }
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
             if (!spawnedWater)
             {
                 waterWarning = Instantiate(emergencyTextPrefab, canvasTransform);
-                waterWarning.GetComponent<TMP_Text>().text = "the crew's water supply has depleted...";
+                waterWarning.GetComponent<TMP_Text>().text = "the water supply has dried up...";
                 waterDeathTimer = waterTimeLimit;
                 spawnedWater = true;
             }
@@ -176,7 +176,7 @@ public class GameManager : MonoBehaviour
             if (!spawnedOxygen)
             {
                 oxygenWarning = Instantiate(emergencyTextPrefab, canvasTransform);
-                oxygenWarning.GetComponent<TMP_Text>().text = "the crew's oxygen supply has depleted...";
+                oxygenWarning.GetComponent<TMP_Text>().text = "the crew's holding their breath...";
                 oxygenDeathTimer = oxygenTimeLimit;
                 spawnedOxygen = true;
             }

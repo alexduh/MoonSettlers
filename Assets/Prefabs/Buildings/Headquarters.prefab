@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 7781684414672579024}
   - component: {fileID: 7827772817620049755}
   - component: {fileID: -8577670874361749494}
-  - component: {fileID: -7075342036975962303}
   - component: {fileID: 3789176439043364233}
-  - component: {fileID: -3429402765404902754}
+  - component: {fileID: 2039019634950234674}
+  - component: {fileID: 3882897111396870352}
   m_Layer: 0
-  m_Name: Greenhouse
-  m_TagString: Greenhouse
+  m_Name: Headquarters
+  m_TagString: Headquarters
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ccc816727f77d0b408ce8ae4dd65783d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a88ace6b7f9e1f4ca5a60a2a5bd534d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,20 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-7075342036975962303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481768920430031249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8d5efdd6e1e11c44875e5b5387df929, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overlappingOther: 0
-  placed: 0
 --- !u!114 &3789176439043364233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +126,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -7075342036975962303}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Structure, Assembly-CSharp
           m_MethodName: Highlight
           m_Mode: 1
@@ -152,7 +138,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!60 &-3429402765404902754
+--- !u!114 &2039019634950234674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481768920430031249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c062138698cb8e418a687d3ed1cbab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlappingOther: 0
+  placed: 0
+--- !u!60 &3882897111396870352
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,7 +169,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.07, y: 1.82}
+    oldSize: {x: 3.48, y: 2.01}
     newSize: {x: 3.07, y: 1.82}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -177,9 +177,30 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.99731207, y: 0.90482074}
-      - {x: -1.5194623, y: 0.39120248}
-      - {x: -1.5194625, y: -0.90999997}
-      - {x: 1.535, y: -0.90999997}
-      - {x: 1.535, y: 0.39820814}
-      - {x: 1.0369192, y: 0.9048208}
+    - - {x: 1.53, y: 0.16499999}
+      - {x: 1.28, y: 0.415}
+      - {x: 1.24, y: 0.585}
+      - {x: 1.37, y: 0.53499997}
+      - {x: 1.5699999, y: 0.59499997}
+      - {x: 1.56, y: 0.66499996}
+      - {x: 1.42, y: 0.765}
+      - {x: 1.0799999, y: 1.005}
+      - {x: 0.91999996, y: 1.005}
+      - {x: 0.88, y: 0.995}
+      - {x: 0.96, y: 0.765}
+      - {x: 1.0699999, y: 0.66499996}
+      - {x: 1.0799999, y: 0.525}
+      - {x: 0.84, y: 0.645}
+      - {x: 0.56, y: 0.705}
+      - {x: 0.04, y: 0.645}
+      - {x: -0.12, y: 0.585}
+      - {x: -0.35, y: 0.45499998}
+      - {x: -0.65999997, y: 0.155}
+      - {x: -0.71999997, y: 0.055}
+      - {x: -0.78, y: -0.055}
+      - {x: -1.68, y: -0.055}
+      - {x: -1.74, y: -0.13499999}
+      - {x: -1.74, y: -1.005}
+      - {x: 1.74, y: -1.005}
+      - {x: 1.74, y: -0.24499999}
+      - {x: 1.65, y: -0.005}
