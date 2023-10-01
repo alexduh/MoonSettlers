@@ -5,10 +5,20 @@ using UnityEngine;
 
 public class MoonControl : MonoBehaviour
 {
+    Collider2D col;
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (col.bounds.Contains(other.bounds.max) && col.bounds.Contains(other.bounds.min))
+            SelectBuildLocation.insideMoon = true;
+        else
+            SelectBuildLocation.insideMoon = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame

@@ -3,24 +3,46 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool paused = false;
+    [SerializeField] private GameObject pause;
+
     float dayTimer;
     float dayDuration = 30f;
     int dayNumber;
+    int population;
 
     float food;
     float water;
-    int population;
     float oxygen;
 
+    [SerializeField] private float foodDeathTimer = -1;
+    [SerializeField] private float waterDeathTimer = -1;
+    private float oxygenDeathTimer = -1;
+    private float foodTimeLimit = 30;
+    private float waterTimeLimit = 10;
+    private float oxygenTimeLimit = 5;
+    private bool spawnedFood = false;
+    private bool spawnedWater = false;
+    private bool spawnedOxygen = false;
+
+    GameObject foodWarning;
+    GameObject waterWarning;
+    GameObject oxygenWarning;
+
+    [SerializeField] private GameObject emergencyTextPrefab;
+    [SerializeField] private Transform canvasTransform;
     [SerializeField] private TMP_Text dayText;
 
     [SerializeField] private TMP_Text foodText;
     [SerializeField] private TMP_Text waterText;
     [SerializeField] private TMP_Text populationText;
-    [SerializeField] private TMP_Text oxygenText;
+    [SerializeField] private Slider oxygenBar;
+
+    [SerializeField] private GameObject settlerPrefab;
 
     private Dictionary<string, int> buildingDict;
 
@@ -28,6 +50,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dayNumber = 0;
+        population = 0;
+
+        food = 5; 
+        water = 6;
+        oxygen = 500;
+        // TODO: change/balance start values
+
         buildingDict = new Dictionary<string, int> 
         {
             { "Headquarters", 0},
@@ -73,6 +102,9 @@ public class GameManager : MonoBehaviour
         GameObject[] settlers = GameObject.FindGameObjectsWithTag("Settler");
         population = settlers.Length;
         populationText.text = population.ToString();
+
+        if (population == 0)
+            GameOver();
     }
 
     void CalculateResources()
@@ -91,14 +123,89 @@ public class GameManager : MonoBehaviour
 
     void DrainResources()
     {
-        food -= population * Time.deltaTime;
-        water -= (buildingDict["Greenhouse"] + population) * Time.deltaTime;
+        food -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * population * Time.deltaTime;
+        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (buildingDict["Greenhouse"] + population) * Time.deltaTime;
         oxygen -= (buildingDict["SynthesisReactor"] + population) * Time.deltaTime;
-        // TODO: use Headquarters in calculation and balance the numbers!
+        // TODO: balance the numbers!
+    }
+
+    void UpdateInfo()
+    {
+        if (food <= 0)
+        {
+            food = 0;
+
+            if (!spawnedFood)
+            {
+                foodWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                foodWarning.GetComponent<TMP_Text>().text = "the settlers are getting hungry...";
+                foodDeathTimer = foodTimeLimit;
+                spawnedFood = true;
+            }
+        }
+        else if (spawnedFood)
+            spawnedFood = false;
+
+        if (water <= 0)
+        {
+            water = 0;
+
+            if (!spawnedWater)
+            {
+                waterWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                waterWarning.GetComponent<TMP_Text>().text = "the crew's water supply has depleted...";
+                waterDeathTimer = waterTimeLimit;
+                spawnedWater = true;
+            }
+        }
+        else if (spawnedWater)
+            spawnedWater = false;
+
+        if (oxygen <= 0)
+        {
+            oxygen = 0;
+
+            if (!spawnedOxygen)
+            {
+                oxygenWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                oxygenWarning.GetComponent<TMP_Text>().text = "the crew's oxygen supply has depleted...";
+                oxygenDeathTimer = oxygenTimeLimit;
+                spawnedOxygen = true;
+            }
+        }
+        else if (spawnedOxygen)
+            spawnedOxygen = false;
+
+        foodText.text = food.ToString("F1") + " kg";
+        waterText.text = water.ToString("F1") + " L";
+        oxygenBar.value = oxygen;
+        // TODO: make oxygen bar change!
     }
 
     void UpdateTime()
     {
+        if (foodDeathTimer > 0)
+            foodDeathTimer -= Time.deltaTime;
+        else if (foodDeathTimer > -1)
+        {
+            SettlerDeath();
+            food = 10;
+            foodDeathTimer = -1;
+        }
+
+        if (waterDeathTimer > 0)
+            waterDeathTimer -= Time.deltaTime;
+        else if (waterDeathTimer > -1)
+        {
+            SettlerDeath();
+            waterDeathTimer = waterTimeLimit;
+        }
+
+        if (oxygenDeathTimer > 0)
+            oxygenDeathTimer -= Time.deltaTime;
+        else if (oxygenDeathTimer > -1)
+            SettlerDeath();
+
         dayTimer -= Time.deltaTime;
         if (dayTimer < 0)
         {
@@ -107,16 +214,53 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DisplayDay(dayNumber));
             if (dayNumber % 2 == 1)
             {
-                // TODO: spawn ship with settlers inside
+                for (int i = 0; i < 2 + buildingDict["Beacon"]; i++)
+                    Instantiate(settlerPrefab);
+                // TODO: spawn ship, play animation with settlers walking out
             }
         }
+    }
+
+    void SettlerDeath()
+    {
+        // TODO: add settler death animation (fall over and fade away)
+        Destroy(GameObject.FindWithTag("Settler"));
+    }
+
+    void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+            TogglePause();
+    }
+
+    void TogglePause()
+    {
+        if (paused)
+        {
+            Time.timeScale = 1;
+            pause.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pause.SetActive(true);
+        }
+
+        paused = !paused;
+    }
+
+    void GameOver()
+    {
+        // TODO: freeze time, disable pausing and interacting with anything, show statistics and retry button
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckPause();
         GetPopulation();
         CalculateResources();
+        UpdateInfo();
         UpdateTime();
     }
 }

@@ -58,13 +58,14 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoonControl.cs" />
     <Compile Include="Assets\Scripts\SelectBuildLocation.cs" />
-    <Compile Include="Assets\Scripts\UpdateEssentials.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UpdateHelpText.cs" />
     <Compile Include="Assets\Scripts\DismantleBehavior.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Building.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Headquarters.cs" />
-    <Compile Include="Assets\Scripts\Buildings\Greenhouse.cs" />
+    <Compile Include="Assets\Scripts\Structures\Structure.cs" />
+    <Compile Include="Assets\Scripts\Structures\Headquarters.cs" />
+    <Compile Include="Assets\Scripts\Structures\Greenhouse.cs" />
+    <Compile Include="Assets\Scripts\UI &amp; Text\EmergencyTextBehavior.cs" />
+    <Compile Include="Assets\Scripts\BuildStructure.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
