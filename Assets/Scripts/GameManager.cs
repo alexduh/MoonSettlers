@@ -13,14 +13,14 @@ public class GameManager : MonoBehaviour
     float dayTimer;
     float dayDuration = 30f;
     int dayNumber;
-    int population;
+    public static int population;
 
     float food;
     float water;
     float oxygen;
 
     [SerializeField] private float foodDeathTimer = -1;
-    [SerializeField] private float waterDeathTimer = -1;
+    [SerializeField] private float waterDeathTimer = -1; // TODO: remove [SerializeField]
     private float oxygenDeathTimer = -1;
     private float foodTimeLimit = 30;
     private float waterTimeLimit = 10;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject settlerPrefab;
 
-    private Dictionary<string, int> buildingDict;
+    public static Dictionary<string, int> buildingDict;
 
     // Start is called before the first frame update
     void Start()
@@ -123,9 +123,9 @@ public class GameManager : MonoBehaviour
 
     void DrainResources()
     {
-        food -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * population * Time.deltaTime;
-        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (buildingDict["Greenhouse"] + population) * Time.deltaTime;
-        oxygen -= (buildingDict["SynthesisReactor"] + population) * Time.deltaTime;
+        food -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * population * Time.deltaTime / dayDuration;
+        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (buildingDict["Greenhouse"] + population) * Time.deltaTime / dayDuration;
+        oxygen -= (buildingDict["SynthesisReactor"] + population) * Time.deltaTime / dayDuration;
         // TODO: balance the numbers!
     }
 
@@ -143,8 +143,12 @@ public class GameManager : MonoBehaviour
                 spawnedFood = true;
             }
         }
-        else if (spawnedFood)
-            spawnedFood = false;
+        else
+        {
+            foodDeathTimer = -1;
+            if (spawnedFood)
+                spawnedFood = false;
+        }
 
         if (water <= 0)
         {
@@ -158,8 +162,12 @@ public class GameManager : MonoBehaviour
                 spawnedWater = true;
             }
         }
-        else if (spawnedWater)
-            spawnedWater = false;
+        else
+        {
+            waterDeathTimer = -1;
+            if (spawnedWater)
+                spawnedWater = false;
+        }
 
         if (oxygen <= 0)
         {
@@ -173,8 +181,12 @@ public class GameManager : MonoBehaviour
                 spawnedOxygen = true;
             }
         }
-        else if (spawnedOxygen)
-            spawnedOxygen = false;
+        else
+        {
+            oxygenDeathTimer = -1;
+            if (spawnedOxygen)
+                spawnedOxygen = false;
+        }
 
         foodText.text = food.ToString("F1") + " kg";
         waterText.text = water.ToString("F1") + " L";

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DismantleBehavior : MonoBehaviour
 {
-    void OnClick()
-    {
+    [SerializeField] Texture2D cursorHammer;
 
-        // TODO: change Cursor icon!
+    public void OnClick()
+    {
+        // TODO: toggle Dismantle mode, change cursor back to normal if turning off Dismantle
+
+        Cursor.SetCursor(cursorHammer, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     // Start is called before the first frame update
