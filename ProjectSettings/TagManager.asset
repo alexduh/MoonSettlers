@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Settler
+  - Headquarters
+  - Greenhouse
+  - Beacon
+  - ResearchLab
+  - SynthesisReactor
+  - Hospital
+  - DefenseTurret
+  - Moon
+  - Advanced
   layers:
   - Default
   - TransparentFX

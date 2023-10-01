@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: -8577670874361749494}
   - component: {fileID: -7075342036975962303}
   m_Layer: 0
-  m_Name: Temp Greenhouse
-  m_TagString: Untagged
+  m_Name: Greenhouse
+  m_TagString: Greenhouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

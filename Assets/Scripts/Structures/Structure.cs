@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class Structure : MonoBehaviour
 {
     Vector2 pos;
-    bool startedBuilding = false;
+    public static bool currentlyBuilding = false;
+    public bool overlappingOther = false;
+    public bool placed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -13,10 +15,19 @@ public abstract class Structure : MonoBehaviour
         
     }
 
+    protected void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<Structure>())
+            overlappingOther = true;
+        else
+            overlappingOther = false;
+
+    }
+
     // Update is called once per frame
     protected void Update()
     {
-        if (!startedBuilding)
+        if (!currentlyBuilding && !placed)
         {
             pos = Input.mousePosition;
             pos = Camera.main.ScreenToWorldPoint(pos);
