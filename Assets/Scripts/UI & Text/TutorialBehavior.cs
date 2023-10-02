@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class TutorialBehavior : MonoBehaviour
 {
+    AudioSource audioSource;
     int currPage = 1;
     int totalPages;
 
@@ -31,12 +32,14 @@ public class TutorialBehavior : MonoBehaviour
     public void NextPage()
     {
         currPage++;
+        audioSource.Play();
         UpdateTutorial();
     }
 
     public void PrevPage()
     {
         currPage--;
+        audioSource.Play();
         UpdateTutorial();
     }
 
@@ -82,5 +85,6 @@ public class TutorialBehavior : MonoBehaviour
             };
 
         totalPages = tutorialDict.Count;
+        audioSource = GetComponent<AudioSource>();
     }
 }

@@ -8,6 +8,8 @@ public class MeteorShower : SurvivalThreat
     [SerializeField] private ParticleSystem meteorParticleSystem;
     [SerializeField] private GameObject buildingDestroyedSound;
 
+    AudioSource audioSource;
+
     public override void EventWarning()
     {
         threatWarning = Instantiate(emergencyTextPrefab, frontCanvas);
@@ -17,7 +19,7 @@ public class MeteorShower : SurvivalThreat
     public override void StartEvent()
     {
         meteorParticleSystem.Play();
-        // TODO: play meteor shower sound effect!
+        audioSource.Play();
         StartCoroutine(TriggerMeteorShower());
     }
 
@@ -42,7 +44,7 @@ public class MeteorShower : SurvivalThreat
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
