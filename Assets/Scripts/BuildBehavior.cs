@@ -11,7 +11,7 @@ public class BuildBehavior : MonoBehaviour
     public static bool insideMoon;
     public static bool buildingSelected = false;
 
-    GameObject structureObj;
+    public static GameObject structureObj;
     Structure structure;
 
     [SerializeField] Material wireframe;
@@ -19,8 +19,8 @@ public class BuildBehavior : MonoBehaviour
     [SerializeField] Sprite constructionSprite;
     Sprite origSprite;
 
-    [SerializeField] float buildTimer = -1;
-    Dictionary<string, float> buildTime;
+    public float buildTimer = -1;
+    public Dictionary<string, float> buildTime;
 
     public void SelectStructure(GameObject selected)
     {
@@ -68,7 +68,9 @@ public class BuildBehavior : MonoBehaviour
         structureObj.GetComponent<SpriteRenderer>().sprite = origSprite;
         GameManager.buildingDict[structureObj.tag]++;
         structure.currentlyBuilding = false;
+        Destroy(structureObj.transform.GetChild(0).gameObject);
         structureObj = null;
+
         EnableBuilding();
     }
 
@@ -116,13 +118,13 @@ public class BuildBehavior : MonoBehaviour
 
         buildTime = new Dictionary<string, float>()
         {
-            { "Headquarters", 10 },
-            { "Greenhouse", 10 },
-            { "Beacon", 10 },
-            { "ResearchLab", 10 },
-            { "SynthesisReactor", 10 },
-            { "Hospital", 10 },
-            { "DefenseTurret", 10 },
+            { "Headquarters", 60 },
+            { "Greenhouse", 30 },
+            { "Beacon", 90 },
+            { "ResearchLab", 30 },
+            { "SynthesisReactor", 30 },
+            { "Hospital", 60 },
+            { "DefenseTurret", 60 },
         };
     }
 
@@ -134,7 +136,7 @@ public class BuildBehavior : MonoBehaviour
 
         if (GameManager.buildingDict["ResearchLab"] == 0)
             DisableAdvancedBuildings();
-        else
+        else if (structure && !structure.currentlyBuilding)
             EnableAdvancedBuildings();
 
         if (!structureObj)

@@ -49,7 +49,7 @@ public class SettlerBehavior : MonoBehaviour
             if (s.currentlyBuilding)
             {
                 transform.position = Vector2.Lerp(transform.position, s.transform.position, 2);
-                // TODO: move towards buildLocation
+                // TODO: move towards buildLocation Lerp not working!
             }
         }
     }

@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class FoodborneDisease : MonoBehaviour
+public class FoodborneDisease : SurvivalThreat
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool diseased = false;
+
+    public override void EventWarning()
     {
-        
+        threatWarning = Instantiate(emergencyTextPrefab, frontCanvas);
+        threatWarning.GetComponent<TMP_Text>().text = "something has gotten into the food supply...";
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void StartEvent()
     {
-        
+        diseased = true;
     }
+
 }

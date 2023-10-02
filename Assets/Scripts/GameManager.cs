@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     float dayTimer;
     float dayDuration = 30f;
-    int dayNumber;
+    public static int dayNumber;
     public static int population;
 
     float food;
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private float foodDeathTimer;
     private float waterDeathTimer;
-    private float oxygenDeathTimer;
+    [SerializeField] private float oxygenDeathTimer;
     private float foodTimeLimit = 30;
     private float waterTimeLimit = 10;
     private float oxygenTimeLimit = 5;
@@ -78,14 +79,14 @@ public class GameManager : MonoBehaviour
         population = 0;
 
         food = 5;
-        water = 6;
-        oxygen = 500;
-        // TODO: change/balance start values
+        water = 5;
+        oxygen = 25;
 
         foodDeathTimer = -1;
         waterDeathTimer = -1;
         oxygenDeathTimer = -1;
 
+        ClearSettlers();
         ClearMoon();
         buildMenu.EnableBuilding();
 
@@ -101,6 +102,12 @@ public class GameManager : MonoBehaviour
         };
 
         Time.timeScale = 1;
+    }
+
+    private void ClearSettlers()
+    {
+        foreach (GameObject settler in GameObject.FindGameObjectsWithTag("Settler"))
+            Destroy(settler);
     }
 
     private void ClearMoon()
@@ -155,18 +162,34 @@ public class GameManager : MonoBehaviour
 
     void GainResources()
     {
-        food += buildingDict["Greenhouse"] * Time.deltaTime;
-        water += buildingDict["SynthesisReactor"] * Time.deltaTime;
-        oxygen += buildingDict["Greenhouse"] * Time.deltaTime;
-        // TODO: balance the numbers!
+        food += 5 * buildingDict["Greenhouse"] * Time.deltaTime / dayDuration;
+        water += 35 * buildingDict["SynthesisReactor"] * Time.deltaTime / dayDuration;
+        oxygen += 35 * buildingDict["Greenhouse"] * Time.deltaTime / dayDuration;
     }
 
     void DrainResources()
     {
-        food -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * population * Time.deltaTime / dayDuration;
-        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (buildingDict["Greenhouse"] + population) * Time.deltaTime / dayDuration;
-        oxygen -= (buildingDict["SynthesisReactor"] + population) * Time.deltaTime / dayDuration;
-        // TODO: balance the numbers!
+        food -= Mathf.Pow(.9f, population * buildingDict["Headquarters"]) * population * Time.deltaTime / dayDuration;
+        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (15 * buildingDict["Greenhouse"] + population) * Time.deltaTime / dayDuration;
+        oxygen -= (15 * buildingDict["SynthesisReactor"] + population) * Time.deltaTime / dayDuration;
+
+        if (FoodborneDisease.diseased)
+            DiseaseEffect();
+    }
+
+    void DiseaseEffect()
+    {
+        if (buildingDict["Hospital"] > 0)
+        {
+            GameObject diseaseCured = Instantiate(emergencyTextPrefab, frontCanvas);
+            diseaseCured.GetComponent<TMP_Text>().text = "Pathogen exterminated, food supply secured!";
+            FoodborneDisease.diseased = false;
+        }
+
+        if (food <= 0)
+            FoodborneDisease.diseased = false;
+        else
+            food -= 2f * Time.deltaTime; // TODO: balance the disease food loss value!
     }
 
     void UpdateInfo()
@@ -178,7 +201,7 @@ public class GameManager : MonoBehaviour
             if (!spawnedFood)
             {
                 foodWarning = Instantiate(emergencyTextPrefab, frontCanvas);
-                foodWarning.GetComponent<TMP_Text>().text = "the settlers are gnawing on their fingers...";
+                foodWarning.GetComponent<TMP_Text>().text = "the settlers are gnawing at their fingers...";
                 foodDeathTimer = foodTimeLimit;
                 spawnedFood = true;
             }
@@ -231,7 +254,6 @@ public class GameManager : MonoBehaviour
         foodText.text = food.ToString("F1") + " kg";
         waterText.text = water.ToString("F1") + " L";
         oxygenBar.value = oxygen;
-        // TODO: make oxygen bar change!
     }
 
     void UpdateTime()
@@ -241,8 +263,7 @@ public class GameManager : MonoBehaviour
         else if (foodDeathTimer > -1)
         {
             StartCoroutine(SettlerDeath());
-            food = 10;
-            foodDeathTimer = -1;
+            foodDeathTimer = foodTimeLimit;
         }
 
         if (waterDeathTimer > 0)
@@ -256,11 +277,17 @@ public class GameManager : MonoBehaviour
         if (oxygenDeathTimer > 0)
             oxygenDeathTimer -= Time.deltaTime;
         else if (oxygenDeathTimer > -1)
+        {
             StartCoroutine(SettlerDeath());
+            oxygenDeathTimer = oxygenTimeLimit;
+        }
 
         dayTimer -= Time.deltaTime;
         if (dayTimer < 0)
         {
+            if (dayNumber == 30)
+                GameOver(); // player has won!
+
             dayTimer = dayDuration;
             dayNumber++;
             StartCoroutine(DisplayDay(dayNumber));
@@ -311,12 +338,14 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        if (BuildBehavior.structureObj)
+            Destroy(BuildBehavior.structureObj);
+
         gameOver = true;
         DismantleBehavior.dismantleMode = false;
         Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
         Time.timeScale = 0;
         gameOverObj.SetActive(true);
-        // TODO: show Day#, show population
     }
 
     // Update is called once per frame

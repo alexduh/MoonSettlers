@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2885bd7f5bb50654885e960dfa5e6043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorGrabbyHand: {fileID: 2800000, guid: c6ddeac5d436a30438b705bde865ec28, type: 3}
 --- !u!58 &63373039
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1442,6 +1443,141 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &205565994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205565995}
+  - component: {fileID: 205565997}
+  - component: {fileID: 205565996}
+  m_Layer: 5
+  m_Name: PopulationText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &205565995
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205565994}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1471812896}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 990, y: 490}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &205565996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205565994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &205565997
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205565994}
+  m_CullTransparentMesh: 1
 --- !u!1 &221210348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,7 +1672,7 @@ RectTransform:
   m_Children:
   - {fileID: 1168929880}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1765,7 +1901,7 @@ GameObject:
   - component: {fileID: 319392724}
   - component: {fileID: 319392723}
   m_Layer: 5
-  m_Name: GameOverDayNumberText
+  m_Name: DayNumberText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1780,7 +1916,7 @@ RectTransform:
   m_GameObject: {fileID: 319392721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.010056608, y: 0.010056608, z: 0.010056608}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1471812896}
@@ -1788,7 +1924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 990, y: 490}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &319392723
@@ -1811,7 +1947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Day: # '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2050,7 +2186,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 'Research Lab: enables building Advanced structures
-              (Build time: 2 min)'
+              (Build time: 30 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -2169,7 +2305,7 @@ RectTransform:
   - {fileID: 916837977}
   - {fileID: 1712086794}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2379,7 +2515,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 'Beacon: Advanced structure; increases number of settlers
-              in each ship by 1 (Build time: 3 min)'
+              in each ship by 1 (Build time: 90 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -2793,7 +2929,7 @@ RectTransform:
   m_GameObject: {fileID: 536549884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.010056608, y: 0.010056608, z: 0.010056608}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1471812896}
@@ -3221,6 +3357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784679211}
   - component: {fileID: 784679212}
+  - component: {fileID: 784679213}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3241,7 +3378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &784679212
 MonoBehaviour:
@@ -3261,8 +3398,9 @@ MonoBehaviour:
   buildMenu: {fileID: 123080591}
   mainCanvas: {fileID: 408683439}
   introCanvas: {fileID: 1650859620}
+  oxygenDeathTimer: 0
   emergencyTextPrefab: {fileID: 2945872316612505091, guid: a97f70c134b09314c884a46619213682, type: 3}
-  frontCanvas: {fileID: 0}
+  frontCanvas: {fileID: 835785164}
   dayText: {fileID: 1809298122}
   foodText: {fileID: 28071635}
   waterText: {fileID: 1125316872}
@@ -3270,6 +3408,21 @@ MonoBehaviour:
   oxygenBar: {fileID: 916837978}
   shipPrefab: {fileID: 4517807601028989005, guid: 31151985634213d459c229ed179482c5, type: 3}
   shipSpawn: {fileID: 2016506686}
+--- !u!114 &784679213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784679210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a8d5b819241d947ac8bd2a134ade75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diseaseObj: {fileID: 1217685870}
+  meteorShowerObj: {fileID: 1059218986}
+  alienRaidObj: {fileID: 0}
 --- !u!1 &814231813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3282,7 +3435,7 @@ GameObject:
   - component: {fileID: 814231815}
   - component: {fileID: 814231814}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: MissionStatusText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3308,7 +3461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Mission: Failure'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3394,7 +3547,7 @@ RectTransform:
   m_GameObject: {fileID: 814231813}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.010056608, y: 0.010056608, z: 0.010056608}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1471812896}
@@ -3402,7 +3555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 125}
   m_SizeDelta: {x: 990, y: 490}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &835785160
@@ -3417,6 +3570,7 @@ GameObject:
   - component: {fileID: 835785163}
   - component: {fileID: 835785162}
   - component: {fileID: 835785161}
+  - component: {fileID: 835785165}
   m_Layer: 5
   m_Name: FrontCanvas
   m_TagString: Untagged
@@ -3500,13 +3654,25 @@ RectTransform:
   - {fileID: 602670104}
   - {fileID: 1471812896}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &835785165
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835785160}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &858781737
 GameObject:
   m_ObjectHideFlags: 0
@@ -3899,9 +4065,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 500
+  m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 500
+  m_Value: 25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4327,7 +4493,7 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 'Hospital: Advanced structure; prevent settlers from
               dying from physical wounds and prevents spread of disease (Build time:
-              5 min)'
+              60 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -4740,13 +4906,14 @@ GameObject:
   - component: {fileID: 1059218985}
   - component: {fileID: 1059218984}
   - component: {fileID: 1059218983}
+  - component: {fileID: 1059218986}
   m_Layer: 0
   m_Name: MeteorShower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &1059218983
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4827,16 +4994,16 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059218982}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4902,7 +5069,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4954,9 +5121,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 6
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5071,7 +5238,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5448,7 +5615,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 25
+    angle: 10
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5653,7 +5820,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 3
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9533,14 +9700,31 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059218982}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.42593098, y: 0.14937289, z: -0.058411818}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1059218986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059218982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898fc209a4442b942844c256282bdb9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emergencyTextPrefab: {fileID: 2945872316612505091, guid: a97f70c134b09314c884a46619213682, type: 3}
+  frontCanvas: {fileID: 835785164}
+  moon: {fileID: 63373035}
+  meteorParticleSystem: {fileID: 1059218984}
+  buildingDestroyedSound: {fileID: 4474177938902554545, guid: e5114b2e3f8df194ea31769a0ace9641, type: 3}
 --- !u!1 &1075459143
 GameObject:
   m_ObjectHideFlags: 0
@@ -9828,6 +10012,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168929879}
   m_CullTransparentMesh: 1
+--- !u!1 &1217685869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217685871}
+  - component: {fileID: 1217685870}
+  m_Layer: 0
+  m_Name: FoodDiseaseObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1217685870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217685869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e0d11380bc82140bf40cf531e8a779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emergencyTextPrefab: {fileID: 2945872316612505091, guid: a97f70c134b09314c884a46619213682, type: 3}
+  frontCanvas: {fileID: 835785164}
+  moon: {fileID: 63373035}
+--- !u!4 &1217685871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217685869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.10376537, y: 0.50873685, z: -0.06281163}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1246090634
 GameObject:
   m_ObjectHideFlags: 0
@@ -10114,8 +10345,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Defense Turret: Advanced structure; shoots at incoming
-              aliens (Build time: 2 min)'
+            m_StringArgument: 'Defense Turret: Advanced structure; defends against
+              aerial threats (Build time: 2 min)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -10482,13 +10713,14 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471812895}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 170.46358}
-  m_LocalScale: {x: 1.8940399, y: 1.8940399, z: 1.8940399}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 536549885}
   - {fileID: 814231816}
   - {fileID: 319392722}
+  - {fileID: 205565995}
   - {fileID: 1928329108}
   - {fileID: 1765368366}
   m_Father: {fileID: 835785164}
@@ -10496,7 +10728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1042.6691, y: -497.18542}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1471812897
@@ -10508,12 +10740,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471812895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 003def4e557a4c747a5c85c55461a75b, type: 3}
+  m_Script: {fileID: 11500000, guid: 90c0402b50337de4780281b31fa94fd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextButton: {fileID: 0}
-  prevButton: {fileID: 0}
-  tutorialText: {fileID: 814231814}
+  missionStatusText: {fileID: 814231814}
+  dayNumberText: {fileID: 319392723}
+  populationText: {fileID: 205565996}
 --- !u!1 &1507981886
 GameObject:
   m_ObjectHideFlags: 0
@@ -10580,7 +10812,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1545414707
 GameObject:
@@ -10697,7 +10929,7 @@ RectTransform:
   m_Children:
   - {fileID: 110622057}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10936,7 +11168,7 @@ RectTransform:
   - {fileID: 1807400022}
   - {fileID: 1794217456}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11396,8 +11628,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Headquarters: decreases Food and Water consumption
-              by multiplicative 5%/settler (Build time: 1 min)'
+            m_StringArgument: 'Headquarters: decreases Food/Water consumption by
+              multiplicative 10%/5% per settler (Build time: 60 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -11713,16 +11945,16 @@ RectTransform:
   m_GameObject: {fileID: 1765368365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 879705860}
   m_Father: {fileID: 1471812896}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: -2}
+  m_AnchoredPosition: {x: 100, y: -150}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1765368367
@@ -12115,8 +12347,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Greenhouse: generates 10kg Food and 1,000 Oxygen at
-              the cost of 5 kL Water each day (Build time: 30 sec)'
+            m_StringArgument: 'Greenhouse: generates 5kg Food and 35 kL Oxygen at
+              the cost of 15 L Water each day (Build time: 30 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -12297,8 +12529,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 'Synthesis Reactor: creates 100 L of Water at the cost
-              of 5 kL Oxygen every day (Build time: 5 min)'
+            m_StringArgument: 'Synthesis Reactor: generates 35 L of Water at the
+              cost of 15 kL Oxygen every day (Build time: 30 sec)'
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
@@ -13065,16 +13297,16 @@ RectTransform:
   m_GameObject: {fileID: 1928329107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 456845280}
   m_Father: {fileID: 1471812896}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -2}
+  m_AnchoredPosition: {x: -100, y: -150}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1928329109

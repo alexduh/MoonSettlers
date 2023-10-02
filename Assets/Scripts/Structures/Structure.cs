@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Structure : MonoBehaviour
 {
+    public GameObject dismantleSound;
+
     Vector2 pos;
     public bool currentlyBuilding = false;
     public bool overlappingOther = false;
@@ -17,10 +20,13 @@ public class Structure : MonoBehaviour
     private Color origColor = Color.clear;
     SpriteRenderer sr;
 
+    protected Slider buildProgress;
+
     // Start is called before the first frame update
     protected void Start()
     {
         buildBehavior = GameObject.FindWithTag("BuildHandler").GetComponent<BuildBehavior>();
+        buildProgress = FindObjectOfType<Slider>(true);
     }
 
     public void Dismantle()
@@ -35,7 +41,7 @@ public class Structure : MonoBehaviour
             currentlyBuilding = false;
         }
 
-        // TODO: play dismantle sound effect!
+        Instantiate(dismantleSound);
         Destroy(gameObject);
     }
 
@@ -73,6 +79,14 @@ public class Structure : MonoBehaviour
             overlappingStructure = false;
     }
 
+    void UpdateBuildProgress()
+    {
+        float buildTime = buildBehavior.buildTime[gameObject.tag];
+        buildProgress.maxValue = buildTime;
+        buildProgress.value = buildTime - buildBehavior.buildTimer;
+        buildProgress.gameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     protected void Update()
     {
@@ -82,5 +96,8 @@ public class Structure : MonoBehaviour
             pos = Camera.main.ScreenToWorldPoint(pos);
             transform.position = pos;
         }
+
+        if (currentlyBuilding)
+            UpdateBuildProgress();
     }
 }

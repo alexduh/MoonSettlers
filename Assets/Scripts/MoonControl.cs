@@ -7,6 +7,8 @@ public class MoonControl : MonoBehaviour
 {
     Collider2D col;
 
+    [SerializeField] Texture2D cursorGrabbyHand;
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Settler")
@@ -27,7 +29,12 @@ public class MoonControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: change this to only work when right-clicking the moon, and change mouse cursor!
+        // TODO: change this to only work when right-clicking the moon
+        if (Input.GetMouseButtonDown(1))
+            Cursor.SetCursor(cursorGrabbyHand, Vector2.zero, CursorMode.ForceSoftware);
+        if (Input.GetMouseButtonUp(1))
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+
         if (Input.GetMouseButton(1))
             transform.rotation *= Quaternion.Euler(Input.GetAxis("Mouse X") * new Vector3(0, 0, -1));
     }

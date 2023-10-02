@@ -24,8 +24,6 @@ public class ShipBehavior : MonoBehaviour
 
             settlersSpawned = true;
         }
-        
-
 
         if (transform.position.x <= 11)
             transform.position += new Vector3(shipSpeed, 0) * Time.deltaTime;

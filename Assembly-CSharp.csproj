@@ -60,15 +60,19 @@
     <Compile Include="Assets\Scripts\BuildBehavior.cs" />
     <Compile Include="Assets\Scripts\Survival Threats\FoodborneDisease.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI &amp; Text\GameOver.cs" />
     <Compile Include="Assets\Scripts\Survival Threats\AlienRaid.cs" />
     <Compile Include="Assets\Scripts\MoonControl.cs" />
     <Compile Include="Assets\Scripts\DismantleBehavior.cs" />
+    <Compile Include="Assets\Scripts\UI &amp; Text\TutorialBehavior.cs" />
     <Compile Include="Assets\Scripts\UI &amp; Text\EmergencyTextBehavior.cs" />
     <Compile Include="Assets\Scripts\Structures\Structure.cs" />
     <Compile Include="Assets\Scripts\Survival Threats\MeteorShower.cs" />
     <Compile Include="Assets\Scripts\SettlerBehavior.cs" />
     <Compile Include="Assets\Scripts\ShipBehavior.cs" />
-    <Compile Include="Assets\Scripts\UI &amp; Text\TutorialBehavior.cs" />
+    <Compile Include="Assets\Scripts\Survival Threats\SurvivalThreat.cs" />
+    <Compile Include="Assets\Scripts\Survival Threats\SurvivalThreatGenerator.cs" />
+    <Compile Include="Assets\Scripts\Sounds\DestroyOnFinish.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
