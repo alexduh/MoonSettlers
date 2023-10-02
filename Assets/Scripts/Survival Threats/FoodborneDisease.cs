@@ -10,7 +10,8 @@ public class FoodborneDisease : SurvivalThreat
     public override void EventWarning()
     {
         threatWarning = Instantiate(emergencyTextPrefab, frontCanvas);
-        threatWarning.GetComponent<TMP_Text>().text = "something has gotten into the food supply...";
+        if (GameManager.buildingDict["Hospital"] == 0)
+            threatWarning.GetComponent<TMP_Text>().text = "something has gotten into the food supply...";
     }
 
     public override void StartEvent()

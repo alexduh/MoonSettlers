@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private float foodDeathTimer;
     private float waterDeathTimer;
     [SerializeField] private float oxygenDeathTimer;
-    private float foodTimeLimit = 30;
+    private float foodTimeLimit = 15;
     private float waterTimeLimit = 10;
     private float oxygenTimeLimit = 5;
     private bool spawnedFood = false;
@@ -162,15 +162,18 @@ public class GameManager : MonoBehaviour
 
     void GainResources()
     {
-        food += 5 * buildingDict["Greenhouse"] * Time.deltaTime / dayDuration;
+        food += 10 * buildingDict["Greenhouse"] * Time.deltaTime / dayDuration;
         water += 35 * buildingDict["SynthesisReactor"] * Time.deltaTime / dayDuration;
         oxygen += 35 * buildingDict["Greenhouse"] * Time.deltaTime / dayDuration;
+
+        if (oxygen > oxygenBar.maxValue)
+            oxygen = oxygenBar.maxValue;
     }
 
     void DrainResources()
     {
         food -= Mathf.Pow(.9f, population * buildingDict["Headquarters"]) * population * Time.deltaTime / dayDuration;
-        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (15 * buildingDict["Greenhouse"] + population) * Time.deltaTime / dayDuration;
+        water -= Mathf.Pow(.95f, population * buildingDict["Headquarters"]) * (20 * buildingDict["Greenhouse"] + population) * Time.deltaTime / dayDuration;
         oxygen -= (15 * buildingDict["SynthesisReactor"] + population) * Time.deltaTime / dayDuration;
 
         if (FoodborneDisease.diseased)

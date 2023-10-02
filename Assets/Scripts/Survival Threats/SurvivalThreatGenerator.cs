@@ -21,29 +21,55 @@ public class SurvivalThreatGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        threatTimer = 0;
+        threatTimer = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (threatTimer <= 0 && (GameManager.dayNumber == 5 || GameManager.dayNumber == 7))
+        if (threatTimer > 0)
         {
-            threatTimer = 10f;
+            if (threatTimer == 30)
+                StartCoroutine(GenerateThreat(threatType));
+
+            threatTimer -= Time.deltaTime;
+            return;
+        }
+
+        if (GameManager.dayNumber == 5 || GameManager.dayNumber == 7)
+        {
+            threatTimer = 30;
             threatType = diseaseObj;
         }
 
-        if (threatTimer <= 0 && (GameManager.dayNumber == 9 || GameManager.dayNumber == 10))
+        if (GameManager.dayNumber == 9 || GameManager.dayNumber == 11)
         {
-            threatTimer = 10f;
+            threatTimer = 30;
             threatType = meteorShowerObj;
         }
 
-        if (threatTimer > 0)
+        if (GameManager.dayNumber >= 12)
         {
-            threatTimer -= Time.deltaTime;
-            if (threatTimer < 0)
-                StartCoroutine(GenerateThreat(threatType));
+            threatTimer = 30;
+            int randEvent = Random.Range(0, 2);
+            switch (randEvent)
+            {
+                case 0:
+                    threatType = diseaseObj;
+                    break;
+
+                case 1:
+                    threatType = meteorShowerObj;
+                    break;
+
+                default:
+                    Debug.Log("This survival event not implemented yet");
+                    break;
+
+            }
+            
         }
+
+        
     }
 }
