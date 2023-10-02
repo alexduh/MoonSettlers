@@ -5,9 +5,15 @@ using UnityEngine.UI;
 
 public class BuildBehavior : MonoBehaviour
 {
-    public static bool insideMoon;
+    public AudioClip[] sounds;
+    private AudioSource audioPlayer;
 
-    GameObject structure;
+    public static bool insideMoon;
+    public static bool buildingSelected = false;
+
+    GameObject structureObj;
+    Structure structure;
+
     [SerializeField] Material wireframe;
     [SerializeField] Material solid;
     [SerializeField] Sprite constructionSprite;
@@ -18,41 +24,51 @@ public class BuildBehavior : MonoBehaviour
 
     public void SelectStructure(GameObject selected)
     {
-        if (structure)
-            Destroy(structure);
+        if (DismantleBehavior.dismantleMode)
+            return;
 
-        structure = Instantiate(selected);
-        structure.GetComponent<SpriteRenderer>().material = wireframe;
+        if (structureObj)
+            Destroy(structureObj);
+
+        buildingSelected = true;
+        structureObj = Instantiate(selected);
+        structureObj.GetComponent<SpriteRenderer>().material = wireframe;
+        structure = structureObj.GetComponent<Structure>();
         insideMoon = false;
     }
 
     bool CheckValidLocation()
     {
-        return insideMoon && !structure.GetComponent<Structure>().overlappingOther;
+        return insideMoon && !structure.overlappingOther;
     }
 
     void StartBuilding()
     {
-        SpriteRenderer sr = structure.GetComponent<SpriteRenderer>();
+        audioPlayer.clip = sounds[0];
+        audioPlayer.Play();
+
+        buildingSelected = false;
+        SpriteRenderer sr = structureObj.GetComponent<SpriteRenderer>();
         origSprite = sr.sprite;
         sr.sprite = constructionSprite;
         sr.material = solid;
-        structure.transform.parent = GameObject.FindWithTag("Moon").transform;
-        structure.GetComponent<Structure>().placed = true;
-        Structure.currentlyBuilding = true;
-        buildTimer = buildTime[structure.tag];
+        structureObj.transform.parent = GameObject.FindWithTag("Moon").transform;
+        structure.placed = true;
+        structure.currentlyBuilding = true;
+        buildTimer = buildTime[structureObj.tag];
 
         DisableBuilding();
-
-        // TODO: play startBuild sound effect
     }
 
     void BuildFinished()
     {
-        structure.GetComponent<SpriteRenderer>().sprite = origSprite;
-        GameManager.buildingDict[structure.tag]++;
-        Structure.currentlyBuilding = false;
-        structure = null;
+        audioPlayer.clip = sounds[1];
+        audioPlayer.Play();
+
+        structureObj.GetComponent<SpriteRenderer>().sprite = origSprite;
+        GameManager.buildingDict[structureObj.tag]++;
+        structure.currentlyBuilding = false;
+        structureObj = null;
         EnableBuilding();
     }
 
@@ -63,7 +79,7 @@ public class BuildBehavior : MonoBehaviour
             if (b = child.GetChild(0).GetComponent<Button>())
                 b.interactable = false;
     }
-    void EnableBuilding()
+    public void EnableBuilding()
     {
         Button b;
         foreach (Transform child in transform)
@@ -96,6 +112,8 @@ public class BuildBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioPlayer = GetComponent<AudioSource>();
+
         buildTime = new Dictionary<string, float>()
         {
             { "Headquarters", 10 },
@@ -116,10 +134,10 @@ public class BuildBehavior : MonoBehaviour
         else
             EnableAdvancedBuildings();
 
-        if (!structure)
+        if (!structureObj)
             return;
 
-        if (Structure.currentlyBuilding) {
+        if (structure.currentlyBuilding) {
             buildTimer -= Time.deltaTime * GameManager.population;
             if (buildTimer <= 0)
                 BuildFinished();
@@ -128,9 +146,9 @@ public class BuildBehavior : MonoBehaviour
         }
 
         if (CheckValidLocation())
-            structure.GetComponent<SpriteRenderer>().material.color = Color.green;
+            structureObj.GetComponent<SpriteRenderer>().material.color = Color.green;
         else
-            structure.GetComponent<SpriteRenderer>().material.color = Color.red;
+            structureObj.GetComponent<SpriteRenderer>().material.color = Color.red;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -140,11 +158,15 @@ public class BuildBehavior : MonoBehaviour
             }
             else
             {
-                
-                // TODO: play error sound effect, display error message
+                audioPlayer.clip = sounds[2];
+                audioPlayer.Play();
+                // TODO: display error message
             }
         }
         if (Input.GetMouseButtonDown(1))
-            Destroy(structure);
+        {
+            buildingSelected = false;
+            Destroy(structureObj);
+        }
     }
 }

@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text populationText;
     [SerializeField] private Slider oxygenBar;
 
-    [SerializeField] private GameObject settlerPrefab;
+    [SerializeField] private GameObject shipPrefab;
+    [SerializeField] private GameObject shipSpawn;
 
     public static Dictionary<string, int> buildingDict;
 
@@ -200,7 +201,7 @@ public class GameManager : MonoBehaviour
             foodDeathTimer -= Time.deltaTime;
         else if (foodDeathTimer > -1)
         {
-            SettlerDeath();
+            StartCoroutine(SettlerDeath());
             food = 10;
             foodDeathTimer = -1;
         }
@@ -209,14 +210,14 @@ public class GameManager : MonoBehaviour
             waterDeathTimer -= Time.deltaTime;
         else if (waterDeathTimer > -1)
         {
-            SettlerDeath();
+            StartCoroutine(SettlerDeath());
             waterDeathTimer = waterTimeLimit;
         }
 
         if (oxygenDeathTimer > 0)
             oxygenDeathTimer -= Time.deltaTime;
         else if (oxygenDeathTimer > -1)
-            SettlerDeath();
+            StartCoroutine(SettlerDeath());
 
         dayTimer -= Time.deltaTime;
         if (dayTimer < 0)
@@ -224,19 +225,27 @@ public class GameManager : MonoBehaviour
             dayTimer = dayDuration;
             dayNumber++;
             StartCoroutine(DisplayDay(dayNumber));
-            if (dayNumber % 2 == 1)
-            {
-                for (int i = 0; i < 2 + buildingDict["Beacon"]; i++)
-                    Instantiate(settlerPrefab);
-                // TODO: spawn ship, play animation with settlers walking out
-            }
+            if (dayNumber % 3 == 1)
+                SpawnShip();
+
         }
     }
 
-    void SettlerDeath()
+    void SpawnShip()
     {
+        Instantiate(shipPrefab, shipSpawn.transform.position, Quaternion.identity);
+
+        // TODO: settlers slowly float towards moon on spawn
+    }
+
+    IEnumerator SettlerDeath()
+    {
+        GameObject dyingSettler = GameObject.FindWithTag("Settler");
+        dyingSettler.GetComponent<AudioSource>().Play();
+        
+        yield return new WaitWhile(() => dyingSettler.GetComponent<AudioSource>().isPlaying);
+        Destroy(dyingSettler);
         // TODO: add settler death animation (fall over and fade away)
-        Destroy(GameObject.FindWithTag("Settler"));
     }
 
     void CheckPause()

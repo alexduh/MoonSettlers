@@ -6,6 +6,7 @@ using UnityEngine;
 public class SettlerBehavior : MonoBehaviour
 {
     float speed = 1;
+    private GameObject moon;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -33,7 +34,7 @@ public class SettlerBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        moon = GameObject.FindWithTag("Moon");
     }
 
     // Update is called once per frame
@@ -41,9 +42,15 @@ public class SettlerBehavior : MonoBehaviour
     {
         transform.rotation *= Quaternion.Euler(new Vector3(0, 0, Mathf.PingPong(Time.time, .5f) - .25f));
 
-        if (Structure.currentlyBuilding)
+        Structure s;
+        foreach(Transform child in moon.transform)
         {
-            // TODO: move towards buildLocation
+            s = child.gameObject.GetComponent<Structure>();
+            if (s.currentlyBuilding)
+            {
+                transform.position = Vector2.Lerp(transform.position, s.transform.position, 2);
+                // TODO: move towards buildLocation
+            }
         }
     }
 }

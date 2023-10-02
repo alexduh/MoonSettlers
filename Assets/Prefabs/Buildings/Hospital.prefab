@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 7781684414672579024}
   - component: {fileID: 7827772817620049755}
   - component: {fileID: -8577670874361749494}
-  - component: {fileID: -7075342036975962303}
   - component: {fileID: 3789176439043364233}
-  - component: {fileID: -3429402765404902754}
+  - component: {fileID: 2013825203069936142}
+  - component: {fileID: 8288786935798765535}
   m_Layer: 0
-  m_Name: Greenhouse
-  m_TagString: Greenhouse
+  m_Name: Hospital
+  m_TagString: Hospital
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ccc816727f77d0b408ce8ae4dd65783d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3472e1c53c31e874ea5650d6e570a53f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,21 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-7075342036975962303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481768920430031249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ba2014e63c95d47a8b86e43d222ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentlyBuilding: 0
-  overlappingOther: 0
-  placed: 0
 --- !u!114 &3789176439043364233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +126,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -7075342036975962303}
+        - m_Target: {fileID: 2013825203069936142}
           m_TargetAssemblyTypeName: Structure, Assembly-CSharp
           m_MethodName: Highlight
           m_Mode: 1
@@ -157,7 +142,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -7075342036975962303}
+        - m_Target: {fileID: 2013825203069936142}
           m_TargetAssemblyTypeName: Structure, Assembly-CSharp
           m_MethodName: UnHighlight
           m_Mode: 1
@@ -173,7 +158,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: -7075342036975962303}
+        - m_Target: {fileID: 2013825203069936142}
           m_TargetAssemblyTypeName: Structure, Assembly-CSharp
           m_MethodName: Dismantle
           m_Mode: 1
@@ -185,7 +170,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!60 &-3429402765404902754
+--- !u!114 &2013825203069936142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481768920430031249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ba2014e63c95d47a8b86e43d222ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentlyBuilding: 0
+  overlappingOther: 0
+  placed: 0
+--- !u!60 &8288786935798765535
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.07, y: 1.82}
+    oldSize: {x: 2.11, y: 2.1}
     newSize: {x: 3.07, y: 1.82}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -210,9 +210,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.99731207, y: 0.90482074}
-      - {x: -1.5194623, y: 0.39120248}
-      - {x: -1.5194625, y: -0.90999997}
-      - {x: 1.535, y: -0.90999997}
-      - {x: 1.535, y: 0.39820814}
-      - {x: 1.0369192, y: 0.9048208}
+    - - {x: -1.025841, y: 0.89674824}
+      - {x: -1.0197334, y: -1.0235907}
+      - {x: 1.0119762, y: -1.0239525}
+      - {x: 1.0159175, y: 0.24958992}
+      - {x: -0.3040323, y: 0.23644394}
+      - {x: -0.3028837, y: 0.8995642}
+      - {x: -0.3704412, y: 1.0384164}
+      - {x: -0.93841076, y: 1.0354811}

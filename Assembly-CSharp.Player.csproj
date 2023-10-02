@@ -56,16 +56,18 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Structures\Headquarters.cs" />
     <Compile Include="Assets\Scripts\UpdateHelpText.cs" />
     <Compile Include="Assets\Scripts\BuildBehavior.cs" />
+    <Compile Include="Assets\Scripts\Survival Threats\FoodborneDisease.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Structures\Greenhouse.cs" />
+    <Compile Include="Assets\Scripts\Survival Threats\AlienRaid.cs" />
     <Compile Include="Assets\Scripts\MoonControl.cs" />
     <Compile Include="Assets\Scripts\DismantleBehavior.cs" />
     <Compile Include="Assets\Scripts\UI &amp; Text\EmergencyTextBehavior.cs" />
     <Compile Include="Assets\Scripts\Structures\Structure.cs" />
+    <Compile Include="Assets\Scripts\Survival Threats\MeteorShower.cs" />
     <Compile Include="Assets\Scripts\SettlerBehavior.cs" />
+    <Compile Include="Assets\Scripts\ShipBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -126,9 +126,41 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 2039019634950234674}
           m_TargetAssemblyTypeName: Structure, Assembly-CSharp
           m_MethodName: Highlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2039019634950234674}
+          m_TargetAssemblyTypeName: Structure, Assembly-CSharp
+          m_MethodName: UnHighlight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2039019634950234674}
+          m_TargetAssemblyTypeName: Structure, Assembly-CSharp
+          m_MethodName: Dismantle
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -147,9 +179,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1481768920430031249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c062138698cb8e418a687d3ed1cbab6, type: 3}
+  m_Script: {fileID: 11500000, guid: d4ba2014e63c95d47a8b86e43d222ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentlyBuilding: 0
   overlappingOther: 0
   placed: 0
 --- !u!60 &3882897111396870352
