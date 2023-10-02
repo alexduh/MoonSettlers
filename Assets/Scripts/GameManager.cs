@@ -7,8 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool gameOver = true;
     public static bool paused = false;
+    [SerializeField] private GameObject gameOverObj;
     [SerializeField] private GameObject pause;
+    [SerializeField] private GameObject moon;
+    [SerializeField] private BuildBehavior buildMenu;
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private GameObject introCanvas;
 
     float dayTimer;
     float dayDuration = 30f;
@@ -19,9 +25,9 @@ public class GameManager : MonoBehaviour
     float water;
     float oxygen;
 
-    [SerializeField] private float foodDeathTimer = -1;
-    [SerializeField] private float waterDeathTimer = -1; // TODO: remove [SerializeField]
-    private float oxygenDeathTimer = -1;
+    private float foodDeathTimer;
+    private float waterDeathTimer;
+    private float oxygenDeathTimer;
     private float foodTimeLimit = 30;
     private float waterTimeLimit = 10;
     private float oxygenTimeLimit = 5;
@@ -34,7 +40,7 @@ public class GameManager : MonoBehaviour
     GameObject oxygenWarning;
 
     [SerializeField] private GameObject emergencyTextPrefab;
-    [SerializeField] private Transform canvasTransform;
+    [SerializeField] private Transform frontCanvas;
     [SerializeField] private TMP_Text dayText;
 
     [SerializeField] private TMP_Text foodText;
@@ -44,21 +50,46 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject shipPrefab;
     [SerializeField] private GameObject shipSpawn;
+    GameObject ship;
 
     public static Dictionary<string, int> buildingDict;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        Time.timeScale = 0;
+    }
+
+    public void BackToMain()
+    {
+        mainCanvas.SetActive(false);
+        introCanvas.SetActive(true);
+        gameOverObj.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        mainCanvas.SetActive(true);
+        introCanvas.SetActive(false);
+        gameOverObj.SetActive(false);
+        gameOver = false;
+
+        dayTimer = 0;
         dayNumber = 0;
         population = 0;
 
-        food = 5; 
+        food = 5;
         water = 6;
         oxygen = 500;
         // TODO: change/balance start values
 
-        buildingDict = new Dictionary<string, int> 
+        foodDeathTimer = -1;
+        waterDeathTimer = -1;
+        oxygenDeathTimer = -1;
+
+        ClearMoon();
+        buildMenu.EnableBuilding();
+
+        buildingDict = new Dictionary<string, int>
         {
             { "Headquarters", 0},
             { "Greenhouse", 0},
@@ -68,6 +99,14 @@ public class GameManager : MonoBehaviour
             { "Hospital", 0},
             { "DefenseTurret", 0}
         };
+
+        Time.timeScale = 1;
+    }
+
+    private void ClearMoon()
+    {
+        foreach (Transform child in moon.transform)
+            Destroy(child.gameObject);
     }
 
     public IEnumerator FadeTextToFullAlpha(float t, TMP_Text name)
@@ -104,7 +143,7 @@ public class GameManager : MonoBehaviour
         population = settlers.Length;
         populationText.text = population.ToString();
 
-        if (population == 0)
+        if (population == 0 && dayNumber > 1)
             GameOver();
     }
 
@@ -138,7 +177,7 @@ public class GameManager : MonoBehaviour
 
             if (!spawnedFood)
             {
-                foodWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                foodWarning = Instantiate(emergencyTextPrefab, frontCanvas);
                 foodWarning.GetComponent<TMP_Text>().text = "the settlers are gnawing on their fingers...";
                 foodDeathTimer = foodTimeLimit;
                 spawnedFood = true;
@@ -157,7 +196,7 @@ public class GameManager : MonoBehaviour
 
             if (!spawnedWater)
             {
-                waterWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                waterWarning = Instantiate(emergencyTextPrefab, frontCanvas);
                 waterWarning.GetComponent<TMP_Text>().text = "the water supply has dried up...";
                 waterDeathTimer = waterTimeLimit;
                 spawnedWater = true;
@@ -176,7 +215,7 @@ public class GameManager : MonoBehaviour
 
             if (!spawnedOxygen)
             {
-                oxygenWarning = Instantiate(emergencyTextPrefab, canvasTransform);
+                oxygenWarning = Instantiate(emergencyTextPrefab, frontCanvas);
                 oxygenWarning.GetComponent<TMP_Text>().text = "the crew's holding their breath...";
                 oxygenDeathTimer = oxygenTimeLimit;
                 spawnedOxygen = true;
@@ -233,7 +272,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnShip()
     {
-        Instantiate(shipPrefab, shipSpawn.transform.position, Quaternion.identity);
+        ship = Instantiate(shipPrefab, shipSpawn.transform.position, Quaternion.identity);
 
         // TODO: settlers slowly float towards moon on spawn
     }
@@ -272,12 +311,20 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        // TODO: freeze time, disable pausing and interacting with anything, show statistics and retry button
+        gameOver = true;
+        DismantleBehavior.dismantleMode = false;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+        Time.timeScale = 0;
+        gameOverObj.SetActive(true);
+        // TODO: show Day#, show population
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameOver)
+            return;
+
         CheckPause();
         GetPopulation();
         CalculateResources();

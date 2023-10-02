@@ -129,6 +129,9 @@ public class BuildBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.gameOver)
+            return;
+
         if (GameManager.buildingDict["ResearchLab"] == 0)
             DisableAdvancedBuildings();
         else

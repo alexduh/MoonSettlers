@@ -7,6 +7,7 @@ public class DismantleBehavior : MonoBehaviour
     [SerializeField] Texture2D cursorHammer;
 
     public static bool dismantleMode = false;
+    private AudioSource audioSource;
 
     public void ToggleMode()
     {
@@ -15,7 +16,10 @@ public class DismantleBehavior : MonoBehaviour
 
         dismantleMode = !dismantleMode;
         if (dismantleMode)
+        {
             Cursor.SetCursor(cursorHammer, new Vector2(10, 10), CursorMode.ForceSoftware);
+            audioSource.Play();
+        }
         else
             Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
 
@@ -24,7 +28,7 @@ public class DismantleBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

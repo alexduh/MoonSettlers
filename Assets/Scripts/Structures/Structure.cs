@@ -8,6 +8,8 @@ public class Structure : MonoBehaviour
     Vector2 pos;
     public bool currentlyBuilding = false;
     public bool overlappingOther = false;
+    private bool overlappingStructure = false;
+
     public bool placed = false;
 
     private BuildBehavior buildBehavior;
@@ -60,13 +62,15 @@ public class Structure : MonoBehaviour
     protected void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Structure>())
-            overlappingOther = true;
+            overlappingStructure = true;
+
+        overlappingOther = overlappingStructure;
     }
 
     protected void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Structure>())
-            overlappingOther = false;
+            overlappingStructure = false;
     }
 
     // Update is called once per frame
